@@ -6,8 +6,10 @@ import org.hibernate.Session;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import model.Employee;
+import model.Product;
 
 /*
 	SELECT ProductName, UnitsInStock, ReorderLevel, UnitsOnOrder 
@@ -22,8 +24,26 @@ public class Brad08 {
 			// Builder
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			// 建立 Criteria
-			CriteriaQuery<Employee> cq = builder.createQuery(Employee.class);
-			Root<Employee> root = cq.from(Employee.class);
+			CriteriaQuery<Product> cq = builder.createQuery(Product.class);
+			Root<Product> root = cq.from(Product.class);
+			
+			Predicate stockLow = builder.lessThanOrEqualTo(
+					root.get("unitsInStock"), root.get("reorderLevel"));
+			
+			cq.multiselect(root.get("productName"),
+					root.get("unitsInStock"),
+					root.get("unitsOnOrder"),
+					root.get("reorderLevel")).where(stockLow);
+			
+			List<Product> results = session.createQuery(cq).getResultList();
+			for (Product product: results) {
+				System.out.printf("%s:%d:%d:%d\n",
+						product.getProductName(),
+						product.getUnitsInStock(),
+						product.getReorderLevel(),
+						product.getUnitsOnOrder());
+			}
+			
 			
 			
 			
