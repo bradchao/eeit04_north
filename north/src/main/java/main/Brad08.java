@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -43,6 +45,11 @@ public class Brad08 {
 						product.getReorderLevel(),
 						product.getUnitsOnOrder());
 			}
+			System.out.println("--- JSON ---");
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writerWithDefaultPrettyPrinter()
+				.writeValueAsString(results);
+			System.out.println(json);
 			
 			
 			
