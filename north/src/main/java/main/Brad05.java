@@ -11,7 +11,7 @@ public class Brad05 {
 	public static void main(String[] args) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			String hql = 
-				"SELECT e.employeeId, e.title, e.firstName, e.lastName" + 
+				"SELECT e.employeeId, e.lastName, e.firstName, e.title" + 
 				" FROM Employee e ORDER BY e.title ASC, e.lastName DESC";
 			
 			List<Employee> employees =
