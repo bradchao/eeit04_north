@@ -25,6 +25,12 @@ public class Employee {
 	private String title;
 	
 	public Employee() {}
+
+	public Employee(String title, 
+				String firstName,
+				String lastName) {
+		this(0, lastName, firstName, title);
+	}
 	
 	public Employee(Integer employeeId, String lastName,
 				String firstName, String title) {
