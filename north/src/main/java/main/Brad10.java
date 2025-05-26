@@ -96,8 +96,43 @@ public class Brad10 {
 				.writeValueAsString(output);
 		System.out.println(json);
 		
+		System.out.println("-----------------");
+		toOrderItem(json);
+		
 	}
 	
-	
-
+	static void toOrderItem(String json) {
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			OrderItem order = mapper.readValue(json, OrderItem.class);
+			
+			System.out.println(order.customer);
+			System.out.println(order.employee);
+			System.out.println(order.details.size());
+			for (DetailItem item : order.details) {
+				System.out.println(item.pname);
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
 }
+
+class OrderItem {
+	public String employee;
+	public String customer;
+	public List<DetailItem> details;
+}
+class DetailItem {
+	public String pname;
+	public Integer qty;
+	public Double price;
+}
+
+
+
+
+
+
+
+
