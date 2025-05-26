@@ -5,18 +5,18 @@ import java.util.List;
 import org.hibernate.Session;
 
 
-// SQL
-public class Brad03 {
+// HQL
+public class Brad06 {
 	public static void main(String[] args) {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
-			String sql = 
-				"SELECT FirstName, LastName" + 
-				" FROM employees ORDER BY Title ASC, LastName DESC";
+			String hql = 
+				"SELECT e.firstName, e.lastName" + 
+				" FROM Employee e ORDER BY e.title ASC, e.lastName DESC";
 			
 			List<Object[]> employees =
-				session.createNativeQuery(sql, Object[].class).getResultList();
+				session.createQuery(hql, Object[].class).getResultList();
 			
-			System.out.println("Brad03");
+			System.out.println("Brad06");
 			System.out.println("------");
 			for (Object[] employee : employees) {
 				System.out.printf("%s %s\n",
