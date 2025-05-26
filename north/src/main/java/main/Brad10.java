@@ -1,5 +1,6 @@
 package main;
 /*
+ * SQL:
  * SELECT 
 		e.LastName,
 	    c.CompanyName,
@@ -12,6 +13,21 @@ package main;
 	JOIN orderdetails od ON o.OrderID = od.OrderID
 	JOIN products p ON od.ProductID = p.ProductID
 	WHERE o.OrderID = 10248
+
+  * HQL:
+  	SELECT 
+		e.LastName,
+	    c.CompanyName,
+	    p.ProductName,
+	    od.UnitPrice,
+	    od.Quantity
+	FROM Order o
+	JOIN o.orderdetail od
+	JOIN od.product p
+	WHERE o.OrderID = 10248
+
+ *
+ *
  */
 
 public class Brad10 {
