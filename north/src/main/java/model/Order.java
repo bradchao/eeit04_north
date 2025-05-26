@@ -47,7 +47,7 @@ public class Order {
 		this.employee = employee;
 	}
 	//------------------------------------
-	@OneToMany(mappedBy = "")
+	@OneToMany(mappedBy = "order")
 	private List<OrderDetail> orderDetails;
 
 	public List<OrderDetail> getOrderDetails() {
